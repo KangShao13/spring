@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+
+
+	<bean id="hello" class="qq.com.spring.Hello">
+
+		<property name="name" value="Spring"></property>
+
+	</bean>
+
+	<bean id="car" class="qq.com.spring.Car">
+		<constructor-arg value="baoma"></constructor-arg>
+		<constructor-arg value="shanghai"></constructor-arg>
+		<constructor-arg value="100" type="double"></constructor-arg>
+
+	</bean>
+
+	<bean id="car1" class="qq.com.spring.Car">
+		<constructor-arg value="baoma"></constructor-arg>
+		<constructor-arg value="shanghai"></constructor-arg>
+		<constructor-arg value="100" type="int"></constructor-arg>
+
+	</bean>
+
+	<bean id="car2" class="qq.com.spring.Car">
+		<property name="name" value="fute"></property>
+		<property name="factory" value="cahngan"></property>
+		<property name="maxbit" value="2222"></property>
+		<property name="pay" value="3000000"></property>
+
+	</bean>
+
+	<bean id="person" class="qq.com.spring.Person">
+		<property name="name" value="liuzhuang"></property>
+		<property name="age" value="18"></property>
+		<property name="car" ref="car"></property>
+	</bean>
+
+	<bean id="person2" class="qq.com.spring.Person">
+		<constructor-arg value="wangao"></constructor-arg>
+		<constructor-arg value="12"></constructor-arg>
+		<constructor-arg ref="car"></constructor-arg>
+		<property name="car.pay" value="222"></property>
+		<property name="car.maxbit" value="222"></property>
+
+	</bean>
+
+	<bean id="person3" class="qq.com.spring.Person2">
+		<property name="name" value="lilongyu"></property>
+		<property name="age" value="23"></property>
+		<property name="cars">
+			<list>
+				<ref bean="car" />
+				<ref bean="car1" />
+				<ref bean="car2"/>
+				<bean class="qq.com.spring.Car">
+					<property name="name" value="fute"></property>
+					<property name="factory" value="cahngan"></property>
+					<property name="maxbit" value="2222"></property>
+					<property name="pay" value="3000000"></property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="person4" class="qq.com.spring.Person3">
+		<property name="name" value="lichunhui"></property>
+		<property name="age" value="34"></property>
+		<property name="cars" >
+			<map>
+				<entry key="car" value-ref="car"></entry>
+				<entry key="car1" value-ref="car1"></entry>
+				<entry key="car2" value-ref="car2"></entry>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="properties" class="qq.com.spring.Properties">
+		<property name="properties">
+			<props >
+				<prop key="username">root</prop>
+				<prop key="password">123456</prop>
+				<prop key="url">localhost:3306/</prop>
+				
+			</props>
+		</property>
+	</bean>
+	
+	<util:list id="cars">
+	<ref bean="car"/>
+	<ref bean="car1"/>
+	<ref bean="car2"/>	
+	
+	</util:list>
+	
+	<bean id="person5" class="qq.com.spring.Person2">
+		<property name="name" value="lichunhui"></property>
+		<property name="age" value="34"></property>
+		<property name="cars" ref="cars"></property>
+	</bean>
+	
+	<bean id="person6" class="qq.com.spring.Person2" p:age="34" p:name="woaini" p:cars-ref="cars"> </bean>
+	
+</beans>
